@@ -22,7 +22,7 @@ public class ThymeleafEmployeeController {
         this.service = service;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String listEmployees(Model model) {
         List<EmployeeResponseDTO> employees = service.showAllEmployees();
 

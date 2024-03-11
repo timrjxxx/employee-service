@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление сотрудника</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center mb-4">Добавление сотрудника</h2>
+
+            <form th:action="@{/employee/add}" th:object="${employee}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="firstName">Имя:</label>
+                    <input type="text" id="firstName" name="firstName" th:field="*{firstName}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Фамилия:</label>
+                    <input type="text" id="lastName" name="lastName" th:field="*{lastName}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Дата рождения:</label>
+                    <input type="date" id="birthDate" name="birthDate" th:field="*{birthDate}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Номер телефона:</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" th:field="*{email}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="photo">Фото:</label>
+                    <input type="file" id="photo" name="file" accept="image/jpeg, image/png" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Добавить сотрудника</button>
+            </form>
+
+            <a th:href="@{/employee/list}" class="btn btn-secondary btn-block mt-3">Вернуться к списку сотрудников</a>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

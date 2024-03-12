@@ -19,10 +19,10 @@ public class RestCallLoggingAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestCallLoggingAspect.class);
 
     @Pointcut("execution(* com.employeeservice.controller.*.*(..))")
-    public void restControllerMethods() {
+    public void ControllerMethods() {
     }
 
-    @Before("restControllerMethods()")
+    @Before("ControllerMethods()")
     public void logRestCallDetails(JoinPoint joinPoint) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String methodName = joinPoint.getSignature().getName();
@@ -33,7 +33,7 @@ public class RestCallLoggingAspect {
         LOGGER.info("Request Parameters: {}", extractRequestParameters(request));
     }
 
-    @AfterReturning(pointcut = "restControllerMethods()", returning = "result")
+    @AfterReturning(pointcut = "ControllerMethods()", returning = "result")
     public void logRestCallResult(Object result) {
         LOGGER.info("REST Call Result: {}", extractResponseDetails(result));
     }

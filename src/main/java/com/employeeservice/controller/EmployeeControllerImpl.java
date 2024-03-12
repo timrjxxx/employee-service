@@ -7,22 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 
 @Controller
 @RequestMapping("/employee")
-public class ThymeleafEmployeeController {
+public class EmployeeControllerImpl implements EmployeeController {
 
     private final EmployeeServiceImpl service;
 
     @Autowired
-    public ThymeleafEmployeeController(EmployeeServiceImpl service) {
+    public EmployeeControllerImpl(EmployeeServiceImpl service) {
         this.service = service;
     }
 
     @GetMapping("")
+    @Override
     public String listEmployees(Model model) {
         List<EmployeeResponseDTO> employees = service.showAllEmployees();
 
@@ -31,6 +34,7 @@ public class ThymeleafEmployeeController {
     }
 
     @GetMapping("/details/{id}")
+    @Override
     public String viewEmployeeDetails(@PathVariable Long id, Model model) {
         EmployeeResponseDTO employee = service.getEmployeeById(id);
         model.addAttribute("employee", employee);
@@ -38,19 +42,21 @@ public class ThymeleafEmployeeController {
     }
 
     @GetMapping("/add")
+    @Override
     public String showAddForm(Model model) {
         model.addAttribute("employee", new EmployeeRequestDTO());
         return "employee/add";
     }
 
     @PostMapping("/add")
-    public String addEmployee(@ModelAttribute EmployeeRequestDTO dto) {
-        // Логика добавления сотрудника
-        service.addEmployee(dto);
+    @Override
+    public String addEmployee(@RequestParam("file") MultipartFile photo, @ModelAttribute EmployeeRequestDTO dto) throws IOException {
+        service.addEmployee(dto, photo);
         return "redirect:/employee";
     }
 
     @GetMapping("/edit/{id}")
+    @Override
     public String showEditForm(@PathVariable Long id, Model model) {
         EmployeeResponseDTO employee = service.getEmployeeById(id);
         model.addAttribute("employee", employee);
@@ -58,12 +64,14 @@ public class ThymeleafEmployeeController {
     }
 
     @PostMapping("/edit/{id}")
+    @Override
     public String editEmployee(@PathVariable Long id, @ModelAttribute EmployeeRequestDTO dto) {
         service.updateEmployee(id, dto);
         return "redirect:/employee";
     }
 
     @GetMapping("/delete/{id}")
+    @Override
     public String deleteEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);
         return "redirect:/employee";

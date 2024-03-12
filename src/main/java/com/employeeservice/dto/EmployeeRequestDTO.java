@@ -16,9 +16,9 @@ public class EmployeeRequestDTO {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-    private Long phoneNumber;
+    private String phoneNumber;
     private String email;
-    private String photoURL;
+    private byte[] photo;
 
 
 }

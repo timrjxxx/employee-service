@@ -8,7 +8,9 @@ import com.employeeservice.model.Employee;
 import com.employeeservice.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -23,9 +25,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public void addEmployee(EmployeeRequestDTO employeeDTO) {
+    public void addEmployee(EmployeeRequestDTO employeeDTO, MultipartFile photo) throws IOException {
+        Employee employee = mapper.reqToModel(employeeDTO);
+        if (!photo.isEmpty()) {
+            employee.setPhoto(photo.getBytes());
+        }
 
-        mapper.modelToRes(employeeRepository.save(mapper.reqToModel(employeeDTO)));
+        mapper.modelToRes(employeeRepository.save(employee));
 
     }
 

@@ -76,4 +76,14 @@ public class EmployeeControllerImpl implements EmployeeController {
         service.deleteEmployee(id);
         return "redirect:/employee";
     }
+
+    @GetMapping("/signin")
+    public String showSignInForm() {
+        return "employee/signin";
+    }
+
+    @GetMapping("/signup")
+    public String showSignUpForm() {
+        return "employee/signup";
+    }
 }

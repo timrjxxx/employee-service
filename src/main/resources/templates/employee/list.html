@@ -21,8 +21,6 @@
             <th>Дата рождения</th>
             <th>Номер телефона</th>
             <th>Email</th>
-            <th>Фото</th>
-            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -33,23 +31,21 @@
             <td th:text="${employee.birthDate}"></td>
             <td th:text="${employee.phoneNumber}"></td>
             <td th:text="${employee.email}"></td>
-            <td>
-                <img th:src="${employee.photoURL}" alt="Фото" class="img-thumbnail" style="max-height: 50px; max-width: 50px;">
-            </td>
+            <!-- Изменена ссылка для перехода на страницу details -->
             <td>
                 <a th:href="@{/employee/details/{id}(id=${employee.employeeId})}" class="btn btn-info btn-sm">Подробнее</a>
-                <a th:href="@{/employee/edit/{id}(id=${employee.employeeId})}" class="btn btn-warning btn-sm">Редактировать</a>
-                <a th:href="@{/employee/delete/{id}(id=${employee.employeeId})}" class="btn btn-danger btn-sm">Удалить</a>
             </td>
         </tr>
         </tbody>
     </table>
 
+    <!-- Изменена ссылка для перехода на страницу добавления сотрудника -->
     <a th:href="@{/employee/add}" class="btn btn-success">Добавить сотрудника</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        integrity="sha384-q8i/X+965DzO0rT7abK
+41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

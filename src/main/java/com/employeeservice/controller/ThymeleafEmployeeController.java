@@ -22,7 +22,7 @@ public class ThymeleafEmployeeController {
         this.service = service;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String listEmployees(Model model) {
         List<EmployeeResponseDTO> employees = service.showAllEmployees();
 
@@ -47,7 +47,7 @@ public class ThymeleafEmployeeController {
     public String addEmployee(@ModelAttribute EmployeeRequestDTO dto) {
         // Логика добавления сотрудника
         service.addEmployee(dto);
-        return "redirect:/employee/list";
+        return "redirect:/employee";
     }
 
     @GetMapping("/edit/{id}")
@@ -60,12 +60,12 @@ public class ThymeleafEmployeeController {
     @PostMapping("/edit/{id}")
     public String editEmployee(@PathVariable Long id, @ModelAttribute EmployeeRequestDTO dto) {
         service.updateEmployee(id, dto);
-        return "redirect:/employee/list";
+        return "redirect:/employee";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);
-        return "redirect:/employee/list";
+        return "redirect:/employee";
     }
 }

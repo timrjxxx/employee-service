@@ -6,7 +6,6 @@ import com.employeeservice.exception.EmployeeNotFoundException;
 import com.employeeservice.mapper.EmployeeMapper;
 import com.employeeservice.model.Employee;
 import com.employeeservice.repository.EmployeeRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public EmployeeResponseDTO addEmployee(EmployeeRequestDTO employeeDTO) {
+    public void addEmployee(EmployeeRequestDTO employeeDTO) {
 
-        return mapper.modelToRes(employeeRepository.save(mapper.reqToModel(employeeDTO)));
+        mapper.modelToRes(employeeRepository.save(mapper.reqToModel(employeeDTO)));
 
     }
 
@@ -37,12 +36,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeResponseDTO updateEmployee(Long employeeId, EmployeeRequestDTO employeeDTO) {
+    public void updateEmployee(Long employeeId, EmployeeRequestDTO employeeDTO) {
         Employee existingEmployee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " is not found"));
 
         mapper.updateEmployeeFromDto(employeeDTO, existingEmployee);
-        return mapper.modelToRes(employeeRepository.save(existingEmployee));
+        mapper.modelToRes(employeeRepository.save(existingEmployee));
     }
 
 

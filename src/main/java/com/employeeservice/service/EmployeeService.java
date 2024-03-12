@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    EmployeeResponseDTO addEmployee(EmployeeRequestDTO requestDTO);
+    void addEmployee(EmployeeRequestDTO requestDTO);
 
     void deleteEmployee(Long employeeId);
 
-    EmployeeResponseDTO updateEmployee(Long id , EmployeeRequestDTO requestDTO);
+    void updateEmployee(Long id , EmployeeRequestDTO requestDTO);
 
     List<EmployeeResponseDTO> showAllEmployees();
 

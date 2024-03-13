@@ -13,7 +13,7 @@ public interface EmployeeService {
 
     void deleteEmployee(Long employeeId);
 
-    void updateEmployee(Long id, EmployeeRequestDTO requestDTO);
+    void updateEmployee(MultipartFile photo,Long id, EmployeeRequestDTO requestDTO)throws IOException;
 
     List<EmployeeResponseDTO> showAllEmployees();
 

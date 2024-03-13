@@ -1,6 +1,7 @@
 package com.employeeservice.aspect;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,9 +15,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Aspect
 @Component
+@Slf4j
 public class RestCallLoggingAspect {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestCallLoggingAspect.class);
 
     @Pointcut("execution(* com.employeeservice.controller.*.*(..))")
     public void ControllerMethods() {
@@ -28,14 +29,14 @@ public class RestCallLoggingAspect {
         String methodName = joinPoint.getSignature().getName();
         String className = joinPoint.getTarget().getClass().getSimpleName();
 
-        LOGGER.info("REST Call: {} [{}]", request.getRequestURI(), request.getMethod());
-        LOGGER.info("Class: {}, Method: {}", className, methodName);
-        LOGGER.info("Request Parameters: {}", extractRequestParameters(request));
+        log.info("REST Call: {} [{}]", request.getRequestURI(), request.getMethod());
+        log.info("Class: {}, Method: {}", className, methodName);
+        log.info("Request Parameters: {}", extractRequestParameters(request));
     }
 
     @AfterReturning(pointcut = "ControllerMethods()", returning = "result")
     public void logRestCallResult(Object result) {
-        LOGGER.info("REST Call Result: {}", extractResponseDetails(result));
+        log.info("REST Call Result: {}", extractResponseDetails(result));
     }
 
     public String extractRequestParameters(HttpServletRequest request) {
@@ -46,8 +47,7 @@ public class RestCallLoggingAspect {
     }
 
     public String extractResponseDetails(Object result) {
-        if (result instanceof org.springframework.http.ResponseEntity) {
-            org.springframework.http.ResponseEntity<?> responseEntity = (org.springframework.http.ResponseEntity<?>) result;
+        if (result instanceof org.springframework.http.ResponseEntity<?> responseEntity) {
             return "Status: " + responseEntity.getStatusCodeValue() + ", Response Body: " + responseEntity.getBody();
         } else {
             return "Invalid response type";

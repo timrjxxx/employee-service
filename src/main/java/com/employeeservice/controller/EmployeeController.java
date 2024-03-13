@@ -21,7 +21,7 @@ public interface EmployeeController {
     String showEditForm(Long id, Model model);
 
 
-    String editEmployee(Long id, EmployeeRequestDTO dto);
+    String editEmployee(MultipartFile photo, Long id, EmployeeRequestDTO dto) throws IOException;
 
     String deleteEmployee(Long id);
 

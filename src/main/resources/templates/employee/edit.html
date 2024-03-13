@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Редактирование сотрудника</title>
+    <title>Edit</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
@@ -12,27 +12,27 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <h2 class="text-center mb-4">Редактирование сотрудника</h2>
+            <h2 class="text-center mb-4">Edit profile</h2>
 
             <form th:action="@{/employee/edit/{id}(id=${employee.employeeId})}" th:object="${employee}" method="post"
                   enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="firstName">Имя:</label>
+                    <label for="firstName">Name:</label>
                     <input type="text" id="firstName" name="firstName" th:field="*{firstName}" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="lastName">Фамилия:</label>
+                    <label for="lastName">Last Name:</label>
                     <input type="text" id="lastName" name="lastName" th:field="*{lastName}" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="birthDate">Дата рождения:</label>
+                    <label for="birthDate">Date of Birth:</label>
                     <input type="date" id="birthDate" name="birthDate" th:field="*{birthDate}" class="form-control" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="phoneNumber">Номер телефона:</label>
+                    <label for="phoneNumber">Phone#:</label>
                     <input type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" class="form-control" required>
                 </div>
 
@@ -42,14 +42,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="photo">Фото:</label>
+                    <label for="photo">Photo:</label>
                     <input type="file" id="photo" name="file" accept="image/jpeg, image/png" class="form-control">
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">Сохранить изменения</button>
+                <button type="submit" class="btn btn-primary btn-block">Save changes</button>
             </form>
 
-            <a th:href="@{/employee}" class="btn btn-secondary btn-block mt-3">Вернуться к списку сотрудников</a>
+            <a th:href="@{/employee}" class="btn btn-secondary btn-block mt-3">Back</a>
         </div>
     </div>
 </div>

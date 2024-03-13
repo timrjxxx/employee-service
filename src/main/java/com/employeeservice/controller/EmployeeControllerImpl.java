@@ -3,11 +3,13 @@ package com.employeeservice.controller;
 import com.employeeservice.dto.EmployeeRequestDTO;
 import com.employeeservice.dto.EmployeeResponseDTO;
 import com.employeeservice.service.EmployeeServiceImpl;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

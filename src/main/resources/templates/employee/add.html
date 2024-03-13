@@ -32,7 +32,8 @@
 
                 <div class="form-group">
                     <label for="phoneNumber">Phone#:</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" class="form-control" required>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" class="form-control" required pattern="\+[0-9]{12}"
+                           title="Example +123456789113">
                 </div>
 
                 <div class="form-group">

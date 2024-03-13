@@ -2,10 +2,16 @@ package com.employeeservice.handler;
 
 import com.employeeservice.exception.EmployeeNotFoundException;
 import com.employeeservice.exception.InvalidCredentialsException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler  {
 

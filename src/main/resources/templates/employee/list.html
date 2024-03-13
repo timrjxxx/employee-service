@@ -6,47 +6,117 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            color: #007bff;
+        }
+
+        .btn {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container mt-5">
-    <!-- Added Sign In and Sign Out buttons -->
-    <div class="float-right mb-2">
-        <a th:href="@{/employee/signin}" class="btn btn-primary">Sign In</a>
-        <a th:href="@{/employee/signin}" class="btn btn-danger ml-2">Sign Out</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Employees</h2>
+        </div>
+        <div class="col-md-6 text-right">
+            <a th:href="@{/employee/signin}" class="btn btn-primary">Sign In</a>
+            <a th:href="@{/employee/signin}" class="btn btn-danger ml-2">Sign Out</a>
+        </div>
     </div>
-
-    <h2 class="text-center mb-4">Employees</h2>
-
-    <!-- Moved the "Добавить сотрудника" button to the top -->
-    <a th:href="@{/employee/add}" class="btn btn-success mb-2">Add employee</a>
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID </th>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Phone#</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="employee : ${employees}">
-            <td th:text="${employee.employeeId}"></td>
-            <td th:text="${employee.firstName}"></td>
-            <td th:text="${employee.lastName}"></td>
-            <td th:text="${employee.birthDate}"></td>
-            <td th:text="${employee.phoneNumber}"></td>
-            <td th:text="${employee.email}"></td>
-            <!-- Изменена ссылка для перехода на страницу details -->
-            <td>
-                <a th:href="@{/employee/details/{id}(id=${employee.employeeId})}" class="btn btn-info btn-sm">Profile</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <a th:href="@{/employee/add}" class="btn btn-success mb-3">Add Employee</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Date of Birth</th>
+                            <th>Phone#</th>
+                            <th>Email</th>
+                            <th>Profile</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="employee : ${employees}">
+                            <td th:text="${employee.employeeId}"></td>
+                            <td th:text="${employee.firstName}"></td>
+                            <td th:text="${employee.lastName}"></td>
+                            <td th:text="${employee.birthDate}"></td>
+                            <td th:text="${employee.phoneNumber}"></td>
+                            <td th:text="${employee.email}"></td>
+                            <td>
+                                <a th:href="@{/employee/details/{id}(id=${employee.employeeId})}"
+                                   class="btn btn-primary btn-sm">View Profile</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -15,7 +15,6 @@
             <h2 class="text-center mb-4">Sign In</h2>
 
             <form th:action="@{/login}" method="post">
-                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 
                 <div class="form-group">
                     <label for="username">Username:</label>

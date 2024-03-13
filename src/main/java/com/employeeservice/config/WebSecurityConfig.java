@@ -26,6 +26,7 @@
 //                .csrf(AbstractHttpConfigurer::disable)
 //                .authorizeHttpRequests(
 //                        auth -> auth
+//                                .requestMatchers("/employee").permitAll()
 //                                .requestMatchers("/employee/signin").permitAll()
 //                                .requestMatchers("/employee/signup").permitAll()
 //                                .anyRequest().authenticated()
